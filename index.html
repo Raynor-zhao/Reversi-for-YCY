@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑白棋 - Reversi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Socket.IO CDN -->
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <!-- API-bridge配置和初始化 -->
+    <script>
+        // 全局变量
+        let uid;
+        let token;
+        
+        // 从URL参数获取uid和token
+        const urlParams = new URLSearchParams(window.location.search);
+        uid = urlParams.get('uid');
+        token = urlParams.get('token');
+        
+        // 确保uid以"game_"前缀开头，符合IM_basic.md文档要求
+        if (uid && !uid.startsWith('game_')) {
+            uid = 'game_' + uid;
+            console.log('Formatted uid to match requirements:', uid);
+        }
+        
+        // 设置全局uid和token
+        window.uid = uid;
+        window.token = token;
+        
+        console.log('API-bridge configuration initialized. UID:', uid);
+    </script>
+    
+    <main class="game-container">
+        <header>
+            <h1>黑白棋</h1>
+        </header>
+        
+        <!-- 房间创建和加入界面 -->
+        <section id="lobby" class="lobby">
+            <div class="player-name-input">
+                <input type="text" id="playerName" placeholder="输入你的名字" maxlength="10" aria-label="玩家名字">
+            </div>
+            
+            <div class="room-actions">
+                <button id="createRoomBtn" aria-label="创建新房间">创建房间</button>
+                <div class="join-room">
+                    <input type="text" id="roomIdInput" placeholder="房间ID" aria-label="房间ID">
+                    <button id="joinRoomBtn" aria-label="加入指定房间">加入房间</button>
+                </div>
+            </div>
+            
+            <div class="room-list">
+                <h3>房间列表</h3>
+                <ul id="roomList" aria-label="可用房间列表"></ul>
+            </div>
+        </section>
+        
+        <!-- 游戏界面 -->
+        <section id="game" class="game" style="display: none;">
+            <div class="game-info">
+                <div class="room-info">
+                    <span>房间ID：</span>
+                    <span id="roomIdDisplay"></span>
+                    <button id="backBtn" class="back-btn" aria-label="返回大厅">返回大厅</button>
+                </div>
+                <div class="current-player" aria-label="当前回合玩家">
+                    <span>当前玩家：</span>
+                    <div class="player-indicator" id="currentPlayerIndicator"></div>
+                </div>
+                <div class="timer" aria-label="剩余思考时间">
+                    <span>剩余时间：</span>
+                    <span id="timerDisplay">30</span>
+                    <span>秒</span>
+                </div>
+                <div class="score">
+                    <div class="score-item" aria-label="黑色玩家分数">
+                        <div class="score-color black"></div>
+                        <span>黑色：</span>
+                        <span id="blackScore">2</span>
+                    </div>
+                    <div class="score-item" aria-label="白色玩家分数">
+                        <div class="score-color white"></div>
+                        <span>白色：</span>
+                        <span id="whiteScore">2</span>
+                    </div>
+                </div>
+            </div>
+            <div class="board-container">
+                <div id="board" role="grid" aria-label="黑白棋棋盘"></div>
+            </div>
+            <div class="game-status">
+                <p id="statusText" aria-live="polite">游戏开始，请黑色玩家落子</p>
+                <div class="game-buttons">
+                    <button id="startGameBtn" class="start-game-btn" style="display: none;" aria-label="开始游戏">开始游戏</button>
+                    <button id="pauseBtn" style="display: none;" aria-label="暂停游戏">暂停</button>
+                    <button id="resignBtn" style="display: none;" aria-label="认输">认输</button>
+                    <button id="restartBtn" style="display: none;" aria-label="重新开始游戏">重新开始</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- 自定义确认对话框 -->
+    <dialog id="confirmDialog" class="confirm-dialog" style="display: none;">
+        <div class="confirm-dialog-content">
+            <div class="confirm-dialog-message" id="confirmMessage" aria-live="polite"></div>
+            <div class="confirm-dialog-buttons">
+                <button id="confirmBtn" aria-label="确认">确定</button>
+                <button id="cancelBtn" aria-label="取消">取消</button>
+            </div>
+        </div>
+    </dialog>
+    
+    <script src="script.js"></script>
+</body>
+</html>

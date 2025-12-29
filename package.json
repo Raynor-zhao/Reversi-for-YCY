@@ -1,0 +1,20 @@
+{
+  "name": "reversi-online",
+  "version": "1.0.0",
+  "description": "Online Reversi game with room support",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": ["reversi", "othello", "game", "online", "socket.io"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

@@ -1,0 +1,744 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 基础样式 */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* 游戏容器样式 */
+.game-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* 标题样式 */
+h1 {
+    color: #4a7c59;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* 淡入动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 大厅样式 */
+.lobby {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding: 20px 0;
+}
+
+/* 玩家名字输入样式 */
+.player-name-input {
+    width: 100%;
+    max-width: 300px;
+}
+
+.player-name-input input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #4a7c59;
+    border-radius: 5px;
+    text-align: center;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.player-name-input input:focus {
+    border-color: #3a6c49;
+    box-shadow: 0 0 5px rgba(74, 124, 89, 0.3);
+    transform: translateY(-1px);
+}
+
+/* 房间操作按钮样式 */
+.room-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.room-actions button {
+    background-color: #4a7c59;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+.room-actions button:hover {
+    background-color: #3a6c49;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.room-actions button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 加入房间样式 */
+.join-room {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.join-room input {
+    flex: 1;
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #4a7c59;
+    border-radius: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.join-room input:focus {
+    border-color: #3a6c49;
+    box-shadow: 0 0 5px rgba(74, 124, 89, 0.3);
+    transform: translateY(-1px);
+}
+
+/* 房间列表样式 */
+.room-list {
+    width: 100%;
+    max-width: 400px;
+    text-align: left;
+}
+
+.room-list h3 {
+    color: #4a7c59;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.room-list ul {
+    list-style: none;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    padding: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #e9ecef;
+}
+
+.room-list li {
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid transparent;
+}
+
+.room-list li:hover {
+    background-color: #e9ecef;
+    transform: translateX(5px);
+    border-color: #dee2e6;
+}
+
+.room-list li:focus {
+    outline: none;
+    background-color: #e9ecef;
+    border-color: #4a7c59;
+}
+
+.room-list li .room-id {
+    font-weight: bold;
+    color: #4a7c59;
+}
+
+.room-list li .room-players {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* 游戏信息样式 */
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    flex-wrap: wrap;
+    gap: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* 计时器样式 */
+.timer {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #4a7c59;
+}
+
+#timerDisplay {
+    color: #e74c3c;
+    font-size: 1.2rem;
+    margin: 0 5px;
+    min-width: 30px;
+    text-align: center;
+    font-weight: bold;
+    animation: pulse 1s infinite alternate;
+}
+
+/* 计时器脉冲动画 */
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.05);
+    }
+}
+
+/* 房间信息样式 */
+.room-info {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #4a7c59;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* 当前玩家样式 */
+.current-player {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.player-indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-left: 10px;
+    background-color: #000;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* 分数样式 */
+.score {
+    display: flex;
+    gap: 20px;
+}
+
+.score-item {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.score-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 5px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.score-color.black {
+    background-color: #000;
+}
+
+.score-color.white {
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+/* 棋盘容器样式 */
+.board-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* 棋盘样式 */
+#board {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 2px;
+    width: 400px;
+    height: 400px;
+    background-color: #4a7c59;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* 棋盘单元格样式 */
+.cell {
+    width: 100%;
+    height: 100%;
+    background-color: #6b9b79;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+    position: relative;
+    outline: none;
+    border: 1px solid transparent;
+}
+
+.cell:hover {
+    background-color: #7cb58c;
+    transform: scale(1.02);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.cell:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* 有效移动指示样式 */
+.cell.valid-move::after {
+    content: '';
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    animation: pulse 1s infinite alternate;
+}
+
+/* 棋子样式 */
+.cell .disc {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    cursor: default;
+    animation: dropIn 0.3s ease-out;
+}
+
+/* 棋子掉落动画 */
+@keyframes dropIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.cell .disc.black {
+    background-color: #000;
+    background: radial-gradient(circle at 30% 30%, #333, #000);
+}
+
+.cell .disc.white {
+    background-color: #fff;
+    background: radial-gradient(circle at 30% 30%, #fff, #ddd);
+    border: 1px solid #ccc;
+}
+
+/* 游戏状态样式 */
+.game-status {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* 状态文本样式 */
+#statusText {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #4a7c59;
+    min-height: 2rem;
+    line-height: 1.5;
+}
+
+/* 游戏按钮容器样式 */
+.game-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* 游戏按钮样式 */
+.game-buttons button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+/* 重新开始按钮样式 */
+#restartBtn {
+    background-color: #4a7c59;
+    color: white;
+}
+
+#restartBtn:hover {
+    background-color: #3a6c49;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* 暂停按钮样式 */
+#pauseBtn {
+    background-color: #f39c12;
+    color: white;
+}
+
+#pauseBtn:hover {
+    background-color: #e67e22;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* 认输按钮样式 */
+#resignBtn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+#resignBtn:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* 按钮点击效果 */
+.game-buttons button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 禁用按钮样式 */
+.game-buttons button:disabled,
+.back-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* 返回按钮样式 */
+.back-btn {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-left: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+.back-btn:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.back-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 开始游戏按钮样式 */
+.start-game-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+.start-game-btn:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.start-game-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 自定义确认对话框样式 */
+.confirm-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    pointer-events: auto;
+    backdrop-filter: blur(2px);
+}
+
+.confirm-dialog-content {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.3s ease-out;
+    border: 1px solid #e9ecef;
+}
+
+/* 对话框滑入动画 */
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* 对话框消息样式 */
+.confirm-dialog-message {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* 对话框按钮容器样式 */
+.confirm-dialog-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* 对话框按钮样式 */
+.confirm-dialog-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+/* 确认按钮样式 */
+.confirm-dialog-buttons button#confirmBtn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.confirm-dialog-buttons button#confirmBtn:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 取消按钮样式 */
+.confirm-dialog-buttons button#cancelBtn {
+    background-color: #f44336;
+    color: white;
+}
+
+.confirm-dialog-buttons button#cancelBtn:hover {
+    background-color: #da190b;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 响应式设计 */
+@media (max-width: 576px) {
+    /* 小屏幕样式 */
+    .game-container {
+        padding: 15px;
+        margin: 10px;
+        max-width: calc(100% - 20px);
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    .game-info {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .room-actions {
+        flex-direction: column;
+    }
+    
+    .join-room {
+        flex-direction: column;
+    }
+    
+    #board {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .cell.valid-move::after {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .game-info > div {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .timer {
+        font-size: 1rem;
+    }
+    
+    #timerDisplay {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 350px) {
+    /* 超小屏幕样式 */
+    #board {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .cell.valid-move::after {
+        width: 8px;
+        height: 8px;
+    }
+    
+    h1 {
+        font-size: 1.3rem;
+    }
+    
+    .game-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .game-buttons button {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+    .game-container {
+        border: 2px solid #000;
+    }
+    
+    .player-indicator {
+        border: 2px solid #000;
+    }
+    
+    .score-color {
+        border: 2px solid #000;
+    }
+    
+    .confirm-dialog-content {
+        border: 2px solid #000;
+    }
+}
+
+/* 减少动画模式支持 */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
